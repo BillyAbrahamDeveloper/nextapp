@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-
+import 'easymde/dist/easymde.min.css';
 import './globals.css';
 
 export const metadata: Metadata = {
