@@ -3,18 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaRegEye } from 'react-icons/fa';
 import { Button } from './ui/button';
+import { Author, Startup } from '@/sanity/types';
+
+export type StartupCardType = Omit<Startup, 'author'> & { author?: Author };
 
 const StartupCard = ({ post }: { post: StartupCardType }) => {
-  const {
-    _createdAt,
-    view,
-    author: { _id: authorId, name },
-    title,
-    category,
-    _id,
-    image,
-    description,
-  } = post;
+  const { _createdAt, view, author, title, category, _id, image, description } =
+    post;
 
   return (
     <li className='startup-card group'>
@@ -28,22 +23,20 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
       <div className='flex-between mt-5 gap-5'>
         <div className='flex-1'>
-          <Link href={`/user/${authorId}`}>
-            <p className=' underline '>{name}</p>
+          <Link href={`/user/${author?._id}`}>
+            <p className=' underline '>{author?.name}</p>
           </Link>
           <Link href={`/startup/${_id}`}>
             <h3 className='text-26-semibold line-clamp-1'>{title}</h3>
           </Link>
         </div>
 
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?._id}`}>
           <Image
-            src={image}
-            // src={author?.image!}
-            // alt={author?.name!}
+            src={author?.image!}
+            alt={author?.name!}
             width={48}
             height={48}
-            alt={title}
             className='rounded-full contain-size '
           />
         </Link>
