@@ -3,17 +3,6 @@ import SearchForm from '../../components/SearchForm';
 import { client } from '@/sanity/lib/client';
 import { STARTUPS_QUERY } from '@/sanity/lib/queries';
 
-interface StartupCardType {
-  _id: number;
-  title: string;
-  author: object;
-  image: string;
-  view: number;
-  category: string;
-  description: string;
-  _createdAt: string;
-}
-
 const Home = async ({
   searchParams,
 }: {
@@ -22,22 +11,6 @@ const Home = async ({
   const query = (await searchParams).query;
 
   const posts = await client.fetch(STARTUPS_QUERY);
-
-  console.log(JSON.stringify(posts, null, 2));
-
-  // const posts = [
-  //   {
-  //     _id: 1,
-  //     title: 'Hello',
-  //     author: { _id: 1, name: 'John Doe' },
-  //     image:
-  //       'https://images.unsplash.com/photo-1730041871382-11a33780c8df?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //     view: 55,
-  //     category: 'Robots',
-  //     description: 'This is a description',
-  //     _createdAt: new Date(),
-  //   },
-  // ];
 
   return (
     <>
