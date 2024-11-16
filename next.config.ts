@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   reactStrictMode: true,
+  webp: {
+    preset: 'default',
+    quality: 100,
+  },
   images: {
     dangerouslyAllowSVG: true,
 
